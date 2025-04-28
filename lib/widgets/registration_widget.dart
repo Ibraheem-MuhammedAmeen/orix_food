@@ -17,6 +17,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
     final _formKey = GlobalKey<FormState>();
     var _enteredEmail = '';
     var _enteredPassword = '';
+    var _userName = '';
     return Column(
       children: [
         Form(
@@ -27,8 +28,17 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                 onSaved: (value) {
                   _enteredEmail = value ?? "";
                 },
-                hintText: 'Enter your email',
+                hintText: 'Enter your UserName',
                 icon: CupertinoIcons.person,
+                labelText: 'User Name',
+              ),
+              SizedBox(height: 20),
+              TextFieldWidget(
+                onSaved: (value) {
+                  _enteredEmail = value ?? "";
+                },
+                hintText: 'Enter your email',
+                icon: Icons.email_outlined,
                 labelText: 'Email',
               ),
               SizedBox(height: 20),

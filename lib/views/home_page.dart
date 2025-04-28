@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:orix_food/core/theme/app_colors.dart';
+import 'package:orix_food/widgets/login&registration_widget.dart';
 import 'package:orix_food/widgets/login_widget.dart';
 
 import '../widgets/registration_widget.dart';
@@ -14,6 +15,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isLoginSelected = true; // true = Login, false = Registration
+  late final Future<LottieComposition> _lottieCompositionFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _lottieCompositionFuture =
+        AssetLottie('assets/animations/AnimationSlash.json').load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +34,26 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Lottie.asset(
-                  'assets/animations/AnimationSlash.json',
-                  width: 350,
-                  height: 250,
-                  fit: BoxFit.contain,
+                FutureBuilder<LottieComposition>(
+                  future: _lottieCompositionFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done &&
+                        snapshot.hasData) {
+                      return Lottie(
+                        composition: snapshot.data!,
+                        width: 350,
+                        height: 250,
+                        fit: BoxFit.contain,
+                      );
+                    } else {
+                      return const SizedBox(
+                        height: 250,
+                        child: Center(child: CircularProgressIndicator()),
+                      );
+                    }
+                  },
                 ),
+
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -41,33 +64,9 @@ class _HomePageState extends State<HomePage> {
                           isLoginSelected = true;
                         });
                       },
-                      child: Column(
-                        children: [
-                          Text(
-                            'Login',
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 18,
-                              fontWeight:
-                                  isLoginSelected
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
-                              color:
-                                  isLoginSelected
-                                      ? Colors.white70
-                                      : Colors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Container(
-                            height: 2,
-                            width: 50,
-                            color:
-                                isLoginSelected
-                                    ? AppColors.secondary
-                                    : Colors.transparent,
-                          ),
-                        ],
+                      child: LoginregistrationWidget(
+                        title: 'Login',
+                        isLoginSelected: isLoginSelected == true,
                       ),
                     ),
                     const SizedBox(width: 90),
@@ -77,33 +76,9 @@ class _HomePageState extends State<HomePage> {
                           isLoginSelected = false;
                         });
                       },
-                      child: Column(
-                        children: [
-                          Text(
-                            'Registration',
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 18,
-                              fontWeight:
-                                  !isLoginSelected
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
-                              color:
-                                  !isLoginSelected
-                                      ? Colors.white70
-                                      : Colors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Container(
-                            height: 2,
-                            width: 90,
-                            color:
-                                !isLoginSelected
-                                    ? AppColors.secondary
-                                    : Colors.transparent,
-                          ),
-                        ],
+                      child: LoginregistrationWidget(
+                        title: 'Registration',
+                        isLoginSelected: isLoginSelected == false,
                       ),
                     ),
                   ],

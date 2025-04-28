@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "847235691076",
+    "project_id": "orix-foods",
+    "storage_bucket": "orix-foods.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847235691076:android:5e336a724dcc77174a8211",
+        "android_client_info": {
+          "package_name": "com.example.orix_food"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXEWPnjzem2rtA53pIaMFgla55920eXkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
