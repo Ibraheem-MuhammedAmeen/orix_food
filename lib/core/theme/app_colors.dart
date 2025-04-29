@@ -11,7 +11,7 @@ class AppColors {
   static const Color accent = Color(0xFFF4D35E);
 
   /// Background Colors
-  static const Color background =  Color(0xfffafafa);
+  static const Color background = Color(0xfffafafa);
   static const Color selectedPaymentCardBackground = Color(0xff222222);
   static const Color unselectedPaymentCardBackground = Color(0xff999999);
 
@@ -31,9 +31,6 @@ class AppColors {
   /// Error Colors
   static const Color error = Color(0xFFFF4C4C);
 
-  /// Success Colors
-  static const Color success = Color(0xFF4CAF50);
-
   /// Chip Colors
   static const Color selectedChip = Color(0xff303030);
   static final Color unselectedChip = Colors.grey.shade200;
@@ -48,5 +45,6 @@ class AppColors {
   static const Color icon = Color(0xff242424);
   static const Color graniteGrey = Color(0xFF606060);
   static const Color grey = Color(0xFF808080);
-
+  static const Color yellow = Color(0xFFFFC244);
+  static const Color green = Color(0xFF00A082);
 }
