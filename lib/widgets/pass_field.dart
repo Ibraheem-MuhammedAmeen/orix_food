@@ -23,14 +23,21 @@ class _PassFieldWidgetState extends State<PassFieldWidget> {
   bool _isObscured = true;
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: Colors.white,
       onSaved: widget.onSaved,
       obscureText: _isObscured,
       style: TextStyle(color: Colors.white), // Change text color
       decoration: InputDecoration(
         labelText: widget.labelText,
-        labelStyle: TextStyle(color: Colors.grey), // Label color
+        labelStyle: TextStyle(
+          color: Colors.grey,
+          fontFamily: 'Montserrat',
+        ), // Label color
         hintText: widget.hintText,
-        hintStyle: TextStyle(color: Colors.white54), // Hint color
+        hintStyle: TextStyle(
+          color: Colors.white54,
+          fontFamily: 'Montserrat',
+        ), // Hint color
         filled: true,
         fillColor: Colors.black26, // Field background color
         suffixIcon: IconButton(

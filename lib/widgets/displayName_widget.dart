@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../core/theme/app_colors.dart';
 
-class LoginregistrationWidget extends StatefulWidget {
-  const LoginregistrationWidget({
+class DisplayNameWidget extends StatefulWidget {
+  const DisplayNameWidget({
     super.key,
     required this.isLoginSelected,
     required this.title,
@@ -12,11 +12,11 @@ class LoginregistrationWidget extends StatefulWidget {
   final String title;
 
   @override
-  State<LoginregistrationWidget> createState() =>
-      _LoginregistrationWidgetState();
+  State<DisplayNameWidget> createState() =>
+      _DisplayNameWidgetState();
 }
 
-class _LoginregistrationWidgetState extends State<LoginregistrationWidget> {
+class _DisplayNameWidgetState extends State<DisplayNameWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(

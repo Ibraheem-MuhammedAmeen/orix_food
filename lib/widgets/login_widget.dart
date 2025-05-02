@@ -1,8 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:orix_food/core/theme/app_colors.dart';
+import 'package:orix_food/viewmodels/login_viewmodel.dart';
 import 'package:orix_food/widgets/pass_field.dart';
 import 'package:orix_food/widgets/text_field.dart';
+import 'package:provider/provider.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -12,11 +16,12 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
+  final _formKey = GlobalKey<FormState>();
+  var _enteredEmail = '';
+  var _enteredPassword = '';
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-    var _enteredEmail = '';
-    var _enteredPassword = '';
+    var loginVM = context.watch<LoginViewModel>();
     return Column(
       children: [
         Form(
@@ -44,7 +49,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap:
+                        loginVM.isLoading
+                            ? null
+                            : () {
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
+                                loginVM.loginUser(
+                                  _enteredEmail,
+                                  _enteredPassword,
+                                  context,
+                                );
+                              }
+                            },
                     child: Container(
                       height: 53,
                       width: 150,
@@ -53,15 +70,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
-                        child: Text(
-                          'Sign IN',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        child:
+                            loginVM.isLoading
+                                ? CircularProgressIndicator(color: Colors.white)
+                                : Text(
+                                  'Sign IN',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                       ),
                     ),
                   ),

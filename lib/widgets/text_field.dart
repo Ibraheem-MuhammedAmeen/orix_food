@@ -10,21 +10,35 @@ class TextFieldWidget extends StatelessWidget {
     required this.icon,
     required this.labelText,
     required this.onSaved,
+    this.keyboardType,
   });
   final labelText;
   final String hintText;
   final IconData icon;
   final void Function(String?)? onSaved;
+  final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       onSaved: onSaved,
-      style: TextStyle(color: Colors.white), // Change text color
+
+      cursorColor: Colors.white,
+      style: TextStyle(
+        color: Colors.white,
+        fontFamily: 'Montserrat',
+      ), // Change text color
+      keyboardType: keyboardType ?? TextInputType.text,
       decoration: InputDecoration(
         labelText: labelText,
-        labelStyle: TextStyle(color: Colors.grey), // Label color
+        labelStyle: TextStyle(
+          color: Colors.grey,
+          fontFamily: 'Montserrat',
+        ), // Label color
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.white54), // Hint color
+        hintStyle: TextStyle(
+          color: Colors.white54,
+          fontFamily: 'Montserrat',
+        ), // Hint color
         filled: true,
         fillColor: Colors.black26, // Field background color
         suffixIcon: Icon(icon, color: Colors.white54), // Person icon at the end

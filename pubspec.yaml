@@ -44,6 +44,7 @@ dependencies:
   http: ^1.3.0
   dio: ^5.8.0+1
   ionicons: ^0.2.2
+  cloud_firestore: ^5.6.7
 
 dev_dependencies:
   hive_generator: ^2.0.1
@@ -78,7 +79,7 @@ flutter:
         - asset: assets/fonts/Montserrat-Regular.ttf
 
   assets:
-    - assets/animations/AnimationSlash.json
+    - assets/animations/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

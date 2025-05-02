@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:orix_food/core/theme/app_colors.dart';
-import 'package:orix_food/widgets/login&registration_widget.dart';
+import 'package:orix_food/widgets/displayName_widget.dart';
 import 'package:orix_food/widgets/login_widget.dart';
 
 import '../widgets/registration_widget.dart';
 
-class SplashHomePage extends StatefulWidget {
-  const SplashHomePage({super.key});
+class LoginRegistration_Screen extends StatefulWidget {
+  const LoginRegistration_Screen({super.key});
 
   @override
-  State<SplashHomePage> createState() => _SplashHomePageState();
+  State<LoginRegistration_Screen> createState() =>
+      _LoginRegistration_ScreenState();
 }
 
-class _SplashHomePageState extends State<SplashHomePage> {
+class _LoginRegistration_ScreenState extends State<LoginRegistration_Screen> {
   bool isLoginSelected = true; // true = Login, false = Registration
   late final Future<LottieComposition> _lottieCompositionFuture;
 
@@ -21,7 +22,7 @@ class _SplashHomePageState extends State<SplashHomePage> {
   void initState() {
     super.initState();
     _lottieCompositionFuture =
-        AssetLottie('assets/animations/AnimationSlash.json').load();
+        AssetLottie('assets/animations/Animation_Delivery.json').load();
   }
 
   @override
@@ -46,7 +47,6 @@ class _SplashHomePageState extends State<SplashHomePage> {
                           width: 350,
                           height: 250,
                           fit: BoxFit.contain,
-                          repeat: false,
                         );
                       } else {
                         return const SizedBox(
@@ -68,7 +68,7 @@ class _SplashHomePageState extends State<SplashHomePage> {
                           isLoginSelected = true;
                         });
                       },
-                      child: LoginregistrationWidget(
+                      child: DisplayNameWidget(
                         title: 'Login',
                         isLoginSelected: isLoginSelected == true,
                       ),
@@ -80,7 +80,7 @@ class _SplashHomePageState extends State<SplashHomePage> {
                           isLoginSelected = false;
                         });
                       },
-                      child: LoginregistrationWidget(
+                      child: DisplayNameWidget(
                         title: 'Registration',
                         isLoginSelected: isLoginSelected == false,
                       ),
