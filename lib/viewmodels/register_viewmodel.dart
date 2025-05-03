@@ -36,9 +36,5 @@ class RegisterViewModel with ChangeNotifier {
       _isLoading = false;
       notifyListeners(); // Let the UI know we're done
     }
-
-    if (user != null) {
-      Navigator.pushReplacementNamed(context, '/login');
-    }
   }
 }

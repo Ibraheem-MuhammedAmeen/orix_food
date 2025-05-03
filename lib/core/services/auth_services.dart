@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:orix_food/core/services/shared_prefrence_service.dart';
 import 'package:orix_food/views/Registration_Login.dart';
 import 'package:orix_food/views/home_page.dart';
 
@@ -8,6 +9,7 @@ import '../utils/input_validators.dart';
 
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
+  final SharedPrefService _sharedPrefService = SharedPrefService();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<UserCredential?> signUpWithEmailPassword(
@@ -55,13 +57,16 @@ class AuthService {
       );
 
       //Save user data to Firestore
-      await _firestore.collection('users').doc(userCredential.user!.uid).set({
-        'uid': userCredential.user!.uid,
-        'email': email.trim(),
-        'userName': userName.trim(),
-        'mobile': mobile.trim(),
-        'password': password.trim(),
-      });
+      User? user = userCredential.user;
+      if (user != null) {
+        await _firestore.collection('users').doc(user!.uid).set({
+          'uid': userCredential.user!.uid,
+          'email': email.trim(),
+          'userName': userName.trim(),
+          'mobile': mobile.trim(),
+          'password': password.trim(),
+        });
+      }
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => LoginRegistration_Screen()),
@@ -109,9 +114,20 @@ class AuthService {
           email: email.trim(),
           password: password.trim(),
         );
-        Navigator.of(
+
+        final user = userCredential.user;
+        if (user != null) {
+          await _sharedPrefService.saveLoginData(user.uid);
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const HomePage()),
+          );
+        }
+
+        return userCredential;
+
+        /*Navigator.of(
           context,
-        ).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+        ).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));*/
       } on FirebaseAuthException catch (error) {
         ScaffoldMessenger.of(
           context,
@@ -131,5 +147,13 @@ class AuthService {
       );
       return null;
     }
+  }
+
+  Future<void> logOut(BuildContext context) async {
+    await _auth.signOut();
+    await _sharedPrefService.clearLoginData();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const LoginRegistration_Screen()),
+    );
   }
 }

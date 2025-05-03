@@ -24,12 +24,5 @@ class LoginViewModel with ChangeNotifier {
 
     _isLoading = false;
     notifyListeners(); // Hide loading indicator
-
-    if (user != null) {
-      Navigator.pushReplacementNamed(
-        context,
-        '/home',
-      ); // Navigate after successful login
-    }
   }
 }
