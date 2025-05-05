@@ -1,20 +1,30 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:orix_food/core/theme/app_theme.dart';
+import 'package:orix_food/models/food_category.dart';
+import 'package:orix_food/models/product_model.dart';
 import 'package:orix_food/viewmodels/loading_provide.dart';
 import 'package:orix_food/viewmodels/login_viewmodel.dart';
 import 'package:orix_food/viewmodels/register_viewmodel.dart';
 import 'package:orix_food/views/home_page.dart';
 import 'package:orix_food/views/splash/splash_screen.dart';
-import 'package:orix_food/views/Registration_Login.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'core/services/shared_prefrence_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is ready before Firebase
   await Firebase.initializeApp(); // Initialize Firebase
+  final dir = await getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
+  Hive.initFlutter();
+  Hive.registerAdapter(FoodCategoryAdapter());
+  Hive.registerAdapter(ProductModelAdapter());
+
+  await Hive.openBox<ProductModel>('products');
 
   final isLoggedIn = await SharedPrefService().isLoggedIn();
   runApp(
