@@ -8,7 +8,8 @@ import 'package:orix_food/models/product_model.dart';
 import 'package:orix_food/viewmodels/loading_provide.dart';
 import 'package:orix_food/viewmodels/login_viewmodel.dart';
 import 'package:orix_food/viewmodels/register_viewmodel.dart';
-import 'package:orix_food/views/home_page.dart';
+import 'package:orix_food/views/mainShell.dart';
+import 'package:orix_food/views/screens/home.dart';
 import 'package:orix_food/views/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark, //ThemeMode.system,
       theme: lightTheme,
-      home: isLoggedIn ? const HomePage() : const SplashScreen(),
+      home: isLoggedIn ? NavigationPage() : const SplashScreen(),
     );
   }
 }

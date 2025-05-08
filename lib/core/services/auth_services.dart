@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:orix_food/core/services/shared_prefrence_service.dart';
 import 'package:orix_food/views/Registration_Login.dart';
-import 'package:orix_food/views/home_page.dart';
+import 'package:orix_food/views/mainShell.dart';
+import 'package:orix_food/views/screens/home.dart';
 
 import '../utils/input_validators.dart';
 
@@ -119,7 +120,7 @@ class AuthService {
         if (user != null) {
           await _sharedPrefService.saveLoginData(user.uid);
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomePage()),
+            MaterialPageRoute(builder: (_) => const HomeScreen()),
           );
         }
 
