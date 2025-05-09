@@ -6,10 +6,19 @@ import '../models/product_model.dart';
 
 class ProductsViewModel extends ChangeNotifier {
   late final Box<ProductModel> productBox;
+  bool _isInitialized = false;
+  bool get isInitialized => _isInitialized;
+
+  /*Future<void> init() async {
+    productBox = Hive.box<ProductModel>('products');
+    await _populateProductsIfNeeded();
+  }*/
 
   Future<void> init() async {
     productBox = Hive.box<ProductModel>('products');
     await _populateProductsIfNeeded();
+    _isInitialized = true;
+    notifyListeners(); // tell the UI to rebuild
   }
 
   Future<void> _populateProductsIfNeeded() async {

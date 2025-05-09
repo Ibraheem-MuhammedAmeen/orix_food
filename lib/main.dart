@@ -7,6 +7,7 @@ import 'package:orix_food/models/food_category.dart';
 import 'package:orix_food/models/product_model.dart';
 import 'package:orix_food/viewmodels/loading_provide.dart';
 import 'package:orix_food/viewmodels/login_viewmodel.dart';
+import 'package:orix_food/viewmodels/products_viewmodel.dart';
 import 'package:orix_food/viewmodels/register_viewmodel.dart';
 import 'package:orix_food/views/mainShell.dart';
 import 'package:orix_food/views/screens/home.dart';
@@ -34,6 +35,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => RegisterViewModel()),
         ChangeNotifierProvider(create: (_) => LoginViewModel()),
         ChangeNotifierProvider(create: (_) => LoadingProvider()),
+        ChangeNotifierProvider(create: (_) => ProductsViewModel()),
       ],
       child: MyApp(isLoggedIn: isLoggedIn),
     ),

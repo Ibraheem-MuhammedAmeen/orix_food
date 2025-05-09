@@ -45,6 +45,8 @@ class AppColors {
   static const Color icon = Color(0xff242424);
   static const Color graniteGrey = Color(0xFF606060);
   static const Color grey = Color(0xFF808080);
+  static const Color dark_grey = Color(0xFFCCCCCC);
   static const Color yellow = Color(0xFFFFC244);
   static const Color green = Color(0xFF00A082);
+  static const Color black = Color(0xff222222);
 }

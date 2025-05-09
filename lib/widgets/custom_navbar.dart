@@ -17,7 +17,7 @@ class CustomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10, left: 32, right: 32),
+      padding: const EdgeInsets.only(bottom: 10, left: 34, right: 34),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
