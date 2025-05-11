@@ -49,17 +49,3 @@ class _DatalistScreenState extends State<DatalistScreen> {
     );
   }
 }
-
-/*
-
-ListView.builder(
-itemCount: widget.products.length,
-itemBuilder: (context, index) {
-final product = widget.products[index];
-return ListTile(
-title: Text(product.name),
-subtitle: Text(product.description ?? ''),
-trailing: Text('₦${product.price}'),
-);
-},
-),*/

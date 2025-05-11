@@ -35,7 +35,7 @@ class CategoryCart extends StatelessWidget {
       },
       child: Container(
         height: 125,
-        width: 123,
+        width: 113,
         decoration: BoxDecoration(
           color: AppColors.dark_grey,
           borderRadius: BorderRadius.circular(10), // <- this makes it ROUND 🌀
