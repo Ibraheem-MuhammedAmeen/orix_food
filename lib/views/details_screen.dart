@@ -6,6 +6,8 @@ import 'package:orix_food/viewmodels/quantity_provider.dart';
 import 'package:orix_food/widgets/quantity_border.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/alert_card.dart';
+
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key, required this.product});
   final dynamic product;
@@ -22,6 +24,33 @@ class _DetailsScreenState extends State<DetailsScreen> {
     return Consumer<QuantityProvider>(
       builder: (context, state, _) {
         return Scaffold(
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.all(11.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showAutoDismissAlert(context, "Item added to cart!");
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFFF6B00), // Vibrant orange
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                    ),
+                    child: Text('Add to cart', style: TextStyle(fontSize: 16)),
+                  ),
+                ),
+                SizedBox(width: 10),
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.shopping_cart, color: Color(0xFFFF6B00)),
+                ),
+              ],
+            ),
+          ),
           appBar: AppBar(
             title: Text(
               widget.product.label,
@@ -124,64 +153,81 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               final product = oneProductPerCategory[index];
                               return Padding(
                                 padding: const EdgeInsets.only(right: 8.0),
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  // color: AppColors.cardBackground,
-                                  child: SizedBox(
-                                    width: 130,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              const BorderRadius.vertical(
-                                                top: Radius.circular(12),
-                                              ),
-                                          child: Image.network(
-                                            product.imageUrl,
-                                            width: 130,
-                                            height: 100,
-                                            fit: BoxFit.cover,
-                                            errorBuilder:
-                                                (context, error, stackTrace) =>
-                                                    const Icon(Icons.error),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  product.name,
-                                                  style: const TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder:
+                                            (context) =>
+                                                DetailsScreen(product: product),
+                                      ),
+                                    );
+                                  },
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    // color: AppColors.cardBackground,
+                                    child: SizedBox(
+                                      width: 130,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.vertical(
+                                                  top: Radius.circular(12),
                                                 ),
-                                                Text(
-                                                  product.category.name,
-                                                  style: const TextStyle(
-                                                    color: Colors.grey,
-                                                  ),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                              ],
+                                            child: Image.network(
+                                              product.imageUrl,
+                                              width: 130,
+                                              height: 100,
+                                              fit: BoxFit.cover,
+                                              errorBuilder:
+                                                  (
+                                                    context,
+                                                    error,
+                                                    stackTrace,
+                                                  ) => const Icon(Icons.error),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(
+                                                8.0,
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    product.name,
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                    ),
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                  Text(
+                                                    product.category.name,
+                                                    style: const TextStyle(
+                                                      color: Colors.grey,
+                                                    ),
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

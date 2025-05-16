@@ -17,6 +17,7 @@ import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/services/shared_prefrence_service.dart';
+import 'models/cart_product.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is ready before Firebase
@@ -26,8 +27,10 @@ void main() async {
   Hive.initFlutter();
   Hive.registerAdapter(FoodCategoryAdapter());
   Hive.registerAdapter(ProductModelAdapter());
+  Hive.registerAdapter(CartProductAdapter());
 
   await Hive.openBox<ProductModel>('products');
+  await Hive.openBox<CartProduct>('cartProducts');
 
   final isLoggedIn = await SharedPrefService().isLoggedIn();
   runApp(
