@@ -86,6 +86,7 @@ import 'package:orix_food/views/screens/category.dart';
 import 'package:orix_food/views/screens/home.dart';
 import 'package:orix_food/views/screens/menu.dart';
 import 'package:orix_food/views/screens/order.dart';
+import 'package:orix_food/views/screens/to_cart.dart';
 
 import '../widgets/custom_navbar.dart';
 
@@ -105,8 +106,9 @@ class _NavigationPageState extends State<NavigationPage> {
 
   final List<Widget> _pages = [
     HomeScreen(),
-    //DiscoveryPage(),
+
     CategoryScreen(),
+    ToCart(),
     OrderScreen(),
     MenuScreen(),
   ];

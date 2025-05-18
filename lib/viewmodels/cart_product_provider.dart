@@ -5,9 +5,11 @@ import 'package:uuid/uuid.dart';
 
 class CartProductProvider extends ChangeNotifier {
   var uuid = Uuid();
-  late final Box<CartProduct> cartProductBox = Hive.box<CartProduct>(
-    'cartProducts',
-  );
+  late final Box<CartProduct> cartBox = Hive.box<CartProduct>('cartProducts');
+
+  /// Returns current cart count
+  int get noAddedToCart => cartBox.length;
+
   Future<void> saveToCart(
     String img,
     String label,
@@ -21,7 +23,7 @@ class CartProductProvider extends ChangeNotifier {
       label: label,
       quantity: quantity,
     );
-    await cartProductBox.add(SaveOrders);
+    await cartBox.add(SaveOrders);
     notifyListeners();
   }
 }

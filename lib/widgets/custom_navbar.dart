@@ -25,9 +25,11 @@ class CustomNavBar extends StatelessWidget {
           Spacer(),
           _buildNavItem(CupertinoIcons.smallcircle_circle, "Category", 1),
           Spacer(),
-          _buildNavItem(Icons.list_alt, "Order", 2),
+          _buildNavItem(CupertinoIcons.cart, "Cart", 2),
           Spacer(),
-          _buildNavItem(Icons.person_add_alt_outlined, "Menu", 3),
+          _buildNavItem(Icons.list_alt, "Order", 3),
+          Spacer(),
+          _buildNavItem(Icons.person_add_alt_outlined, "Menu", 4),
         ],
       ),
     );
