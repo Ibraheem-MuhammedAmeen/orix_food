@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(title: const Text("🍜 Orix Food Menu")),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
+        child: Container() /*GridView.builder(
           itemCount: products.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context, index) {
             return ProductCard(product: products[index]);
           },
-        ),
+        ),*/,
       ),
     );
   }
