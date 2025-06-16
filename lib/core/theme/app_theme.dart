@@ -25,7 +25,7 @@ final ThemeData lightTheme = ThemeData(
 // Dark Theme
 final ThemeData darkTheme = ThemeData(
   useMaterial3: true,
-  scaffoldBackgroundColor: AppColors.selectedPaymentCardBackground,
+  scaffoldBackgroundColor: AppColors.blackCardBackground,
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.transparent,
     elevation: 0,
@@ -37,7 +37,7 @@ final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primary: AppColors.primary,
     onPrimary: AppColors.onPrimary,
-    background: AppColors.selectedPaymentCardBackground,
+    background: AppColors.blackCardBackground,
     onBackground: Colors.white,
   ),
 );

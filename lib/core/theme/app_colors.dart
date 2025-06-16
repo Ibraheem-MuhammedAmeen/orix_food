@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   /// Primary Colors
   static const Color primary = Color(0xFF212121);
-  static const Color primaryDark = Color(0xFF0A58CC);
+  static const Color primary_bar = Color(0xFFFED8CF);
   static const Color onPrimary = Color(0xFFFFFFFF);
 
   /// Secondary Colors
@@ -12,16 +12,10 @@ class AppColors {
 
   /// Background Colors
   static const Color background = Color(0xfffafafa);
-  static const Color selectedPaymentCardBackground = Color(0xff222222);
-  static const Color unselectedPaymentCardBackground = Color(0xff999999);
+  static const Color blackCardBackground = Color(0xff222222);
 
-  /// Text Field
-  static const Color textFiledDisabledFilledColor = Color(0xffebebeb);
-  static const Color textFiledEnabledFilledColor = Colors.white;
   static const Color textFiledEnabledBorderColor = Color(0xffc8c8c8);
 
-  /// TabBar
-  static const Color tabBarIndicator = Color(0xFF303030);
 
   /// Text Colors
   static const Color textPrimary = Color(0xFF333333);
@@ -30,12 +24,6 @@ class AppColors {
 
   /// Error Colors
   static const Color error = Color(0xFFFF4C4C);
-
-  /// Chip Colors
-  static const Color selectedChip = Color(0xff303030);
-  static final Color unselectedChip = Colors.grey.shade200;
-  static const Color selectedChipIcon = Colors.white;
-  static const Color unselectedChipIcon = Color(0xff909090);
 
   /// Card Colors
   static const Color card = Color(0xFFFFFFFF);
@@ -49,6 +37,4 @@ class AppColors {
   static const Color yellow = Color(0xFFFFC244);
   static const Color green = Color(0xFF00A082);
   static const Color black = Color(0xff222222);
-  static const Color white = Color(0xFFF5F5F5);
-  static const Color indigo = Color(0xff4F46E5);
 }

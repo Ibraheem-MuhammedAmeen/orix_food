@@ -48,7 +48,7 @@ class CustomNavBar extends StatelessWidget {
         decoration:
             isSelected
                 ? BoxDecoration(
-                  color: AppColors.yellow,
+                  color: AppColors.error,
                   borderRadius: BorderRadius.circular(20),
                 )
                 : null,
