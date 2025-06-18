@@ -28,21 +28,23 @@ class _CategoryScreenState extends State<CategoryScreen> {
       body: Padding(
         padding: const EdgeInsets.only(right: 6, left: 6, top: 19),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 25,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 15,
               children: [
                 CategoryCart(
                   name: 'Rice & Pastas',
                   img: 'assets/images/rice_pasta.png',
                   category: FoodCategory.Rice_Pastas,
                 ),
-                SizedBox(width: 15),
                 CategoryCart(
                   name: 'Sauces & Spreads',
                   img: 'assets/images/sauces_spreads.png',
                   category: FoodCategory.Sauces_Spreads,
                 ),
-                SizedBox(width: 15),
                 CategoryCart(
                   name: 'sugar & Sweeteners',
                   img: 'assets/images/Sugar_Sweeteners.png',
@@ -50,21 +52,21 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 25),
+
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 15,
               children: [
                 CategoryCart(
                   name: 'Seasonings',
                   img: 'assets/images/Seasonings.png',
                   category: FoodCategory.Seasonings,
                 ),
-                SizedBox(width: 15),
                 CategoryCart(
                   name: 'Miscellaneous',
                   img: 'assets/images/miscellaneous.png',
                   category: FoodCategory.Miscellaneous,
                 ),
-                SizedBox(width: 15),
                 CategoryCart(
                   name: 'Flour_Grains',
                   img: 'assets/images/flur_grains.png',
@@ -72,21 +74,21 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 25),
+
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 15,
               children: [
                 CategoryCart(
                   name: 'Cooking_Oils',
                   img: 'assets/images/cooking_oil.png',
                   category: FoodCategory.Cooking_Oils,
                 ),
-                SizedBox(width: 15),
                 CategoryCart(
                   name: 'Fruits',
                   img: 'assets/images/fruits.png',
                   category: FoodCategory.fruits,
                 ),
-                SizedBox(width: 15),
                 CategoryCart(
                   name: 'Junks',
                   img: 'assets/images/junks.png',
@@ -94,15 +96,20 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 25),
-            Row(
-              children: [
-                CategoryCart(
-                  name: 'Noodles',
-                  img: 'assets/images/noodle.png',
-                  category: FoodCategory.Noodles,
-                ),
-              ],
+
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                spacing: 15,
+                children: [
+                  CategoryCart(
+                    name: 'Noodles',
+                    img: 'assets/images/noodle.png',
+                    category: FoodCategory.Noodles,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

@@ -48,6 +48,7 @@ dependencies:
   shared_preferences: ^2.5.3
   persistent_bottom_nav_bar: ^6.2.1
   uuid: ^4.4.2
+  carousel_slider: ^5.1.1
 
 dev_dependencies:
   hive_generator: ^2.0.1

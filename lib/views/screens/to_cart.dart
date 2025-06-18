@@ -46,60 +46,73 @@ class ToCart extends StatelessWidget {
                 final cardProduct = cartProducts[index];
                 return Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Card(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Image.network(
-                                cardProduct.imageUrl,
-                                height: 70,
-                                width: 150,
-                                fit: BoxFit.cover,
-                              ),
-                            ],
+                  child: Dismissible(
+                    onDismissed: (direction) {
+                      state.deleteCart(cardProduct.id);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            '${cardProduct.label} removed from cart',
                           ),
-                          SizedBox(width: 10),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                cardProduct.label,
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: AppColors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  wordSpacing: 0.5,
+                        ),
+                      );
+                    },
+                    key: Key('$cardProduct.id'),
+                    child: Card(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                Image.network(
+                                  cardProduct.imageUrl,
+                                  height: 70,
+                                  width: 150,
+                                  fit: BoxFit.cover,
                                 ),
-                              ),
-                              Text(
-                                'L, Black',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: AppColors.grey,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  wordSpacing: 0.5,
+                              ],
+                            ),
+                            SizedBox(width: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  cardProduct.label,
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: AppColors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    wordSpacing: 0.5,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                '\₦${cardProduct.price}',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.red,
-                                  fontSize: 14.5,
-                                  fontWeight: FontWeight.bold,
-                                  wordSpacing: 0.5,
+                                Text(
+                                  'L, Black',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: AppColors.grey,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    wordSpacing: 0.5,
+                                  ),
                                 ),
-                              ),
-                              Row(children: []),
-                            ],
-                          ),
-                        ],
+                                Text(
+                                  '\₦${cardProduct.price}',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.red,
+                                    fontSize: 14.5,
+                                    fontWeight: FontWeight.bold,
+                                    wordSpacing: 0.5,
+                                  ),
+                                ),
+                                Row(children: []),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

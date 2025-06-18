@@ -4,6 +4,8 @@ import 'package:orix_food/models/product_model.dart';
 import 'package:orix_food/viewmodels/cart_product_provider.dart';
 import 'package:orix_food/viewmodels/filtered_products_one_one.dart';
 import 'package:orix_food/viewmodels/quantity_provider.dart';
+import 'package:orix_food/views/screens/cart.dart';
+import 'package:orix_food/views/screens/to_cart.dart';
 import 'package:orix_food/widgets/quantity_border.dart';
 import 'package:provider/provider.dart';
 
@@ -51,9 +53,17 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                 ),
                 SizedBox(width: 10),
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.shopping_cart, color: Color(0xFFFF6B00)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ToCart()),
+                    );
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.shopping_cart, color: Color(0xFFFF6B00)),
+                  ),
                 ),
               ],
             ),

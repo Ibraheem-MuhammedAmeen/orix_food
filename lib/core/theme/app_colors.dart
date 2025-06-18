@@ -16,7 +16,6 @@ class AppColors {
 
   static const Color textFiledEnabledBorderColor = Color(0xffc8c8c8);
 
-
   /// Text Colors
   static const Color textPrimary = Color(0xFF333333);
   static const Color textSecondary = Color(0xFF808080);
@@ -34,6 +33,7 @@ class AppColors {
   static const Color graniteGrey = Color(0xFF606060);
   static const Color grey = Color(0xFF808080);
   static const Color dark_grey = Color(0xFFCCCCCC);
+  static const Color light_grey = Color(0xFFC6C2C2);
   static const Color yellow = Color(0xFFFFC244);
   static const Color green = Color(0xFF00A082);
   static const Color black = Color(0xff222222);
