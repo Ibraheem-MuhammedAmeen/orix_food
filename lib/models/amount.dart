@@ -1,0 +1,4 @@
+/*
+class Amount{
+  int
+}*/

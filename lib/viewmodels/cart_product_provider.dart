@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:orix_food/models/cart_product.dart';
 import 'package:orix_food/models/product_model.dart';
+import 'package:orix_food/viewmodels/total_amount.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class CartProductProvider extends ChangeNotifier {
@@ -28,7 +31,7 @@ class CartProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deleteCart(String id) async {
+  Future<void> deleteCart(String id, BuildContext context) async {
     final keyToDelete = cartBox.keys.firstWhere(
       (key) => cartBox.get(key)?.id == id,
       orElse: () => null,
@@ -36,7 +39,8 @@ class CartProductProvider extends ChangeNotifier {
 
     if (keyToDelete != null) {
       await cartBox.delete(keyToDelete);
-      notifyListeners();
     }
+    Provider.of<TotalAmount>(context, listen: false).calculateTotal();
+    notifyListeners();
   }
 }

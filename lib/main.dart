@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:orix_food/core/theme/app_theme.dart';
 import 'package:orix_food/models/food_category.dart';
 import 'package:orix_food/models/product_model.dart';
+import 'package:orix_food/viewmodels/QuantityController.dart';
 import 'package:orix_food/viewmodels/cart_product_provider.dart';
 import 'package:orix_food/viewmodels/loading_provide.dart';
 import 'package:orix_food/viewmodels/login_viewmodel.dart';
@@ -12,6 +13,7 @@ import 'package:orix_food/viewmodels/products_viewmodel.dart';
 import 'package:orix_food/viewmodels/quantity_provider.dart';
 import 'package:orix_food/viewmodels/register_viewmodel.dart';
 import 'package:orix_food/viewmodels/search_viewmodel.dart';
+import 'package:orix_food/viewmodels/total_amount.dart';
 import 'package:orix_food/views/mainShell.dart';
 import 'package:orix_food/views/screens/home.dart';
 import 'package:orix_food/views/splash/splash_screen.dart';
@@ -45,6 +47,8 @@ void main() async {
         ChangeNotifierProvider(create: (_) => QuantityProvider()),
         ChangeNotifierProvider(create: (_) => CartProductProvider()),
         ChangeNotifierProvider(create: (_) => SearchModelView()),
+        ChangeNotifierProvider(create: (_) => QuantityController()),
+        ChangeNotifierProvider(create: (_) => TotalAmount()),
       ],
       child: MyApp(isLoggedIn: isLoggedIn),
     ),

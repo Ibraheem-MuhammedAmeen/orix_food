@@ -3,8 +3,10 @@ import 'package:hive/hive.dart';
 import 'package:orix_food/core/theme/app_colors.dart';
 import 'package:orix_food/models/food_category.dart';
 import 'package:orix_food/widgets/categoryCard_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/product_model.dart';
+import '../../viewmodels/products_viewmodel.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -18,7 +20,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.yellow,
+        backgroundColor: AppColors.primary_bar,
         title: Text(
           'C a t e g o r y',
           style: TextStyle(fontFamily: 'Montserrat', fontSize: 18),

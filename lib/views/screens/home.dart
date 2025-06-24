@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:orix_food/core/theme/app_colors.dart';
+import 'package:orix_food/viewmodels/products_viewmodel.dart';
 import 'package:orix_food/viewmodels/search_viewmodel.dart';
+import 'package:orix_food/views/profile.dart';
 import 'package:orix_food/views/screens/category.dart';
 import 'package:orix_food/widgets/app_textfield.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    Future.microtask(
+      () => Provider.of<ProductsViewModel>(context, listen: false).init(),
+    );
     Future.microtask(
       () => Provider.of<SearchModelView>(context, listen: false).init(),
     );
@@ -55,54 +60,64 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 18,
                   children: [
-                    Row(
-                      children: [
-                        FloatingActionButton(
-                          backgroundColor: AppColors.primary_bar,
-                          onPressed: () {},
-                          child: Icon(Icons.person, color: Colors.black),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'Orix Cart Resources',
-                                  style: TextStyle(
-                                    color: AppColors.light_grey,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat',
-                                  ),
-                                ),
-                                Text(
-                                  'Delivery available only within Abuja',
-                                  style: TextStyle(
-                                    color: AppColors.card,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
+                    Center(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FloatingActionButton(
+                            backgroundColor: AppColors.primary_bar,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (c) => Profile()),
+                              );
+                            },
+                            child: Icon(Icons.person, color: Colors.black),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
                             ),
                           ),
-                        ),
-                        FloatingActionButton(
-                          backgroundColor: AppColors.primary_bar,
-                          onPressed: () {},
-                          child: Icon(
-                            Icons.window_outlined,
-                            color: Colors.black,
+                          Expanded(
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    'Orix Cart Resources',
+                                    style: TextStyle(
+                                      color: AppColors.light_grey,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Montserrat',
+                                    ),
+                                  ),
+                                  Text(
+                                    'Delivery available only within Abuja',
+                                    style: TextStyle(
+                                      color: AppColors.card,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                          FloatingActionButton(
+                            backgroundColor: AppColors.primary_bar,
+                            onPressed: () {},
+                            child: Icon(
+                              Icons.window_outlined,
+                              color: Colors.black,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     //SizedBox(height: 15),
                     AppTextField(
@@ -227,68 +242,93 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: 150,
-                              child: ListView.separated(
-                                itemBuilder: (context, index) {
-                                  final product = oneProductPerCategory[index];
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder:
-                                              (context) => DetailsScreen(
-                                                product: product,
+                              height: 170,
+                              child:
+                                  oneProductPerCategory.isNotEmpty
+                                      ? ListView.separated(
+                                        itemBuilder: (context, index) {
+                                          final product =
+                                              oneProductPerCategory[index];
+                                          return InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) =>
+                                                          DetailsScreen(
+                                                            product: product,
+                                                          ),
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              height: 125,
+                                              width: 140,
+                                              decoration: BoxDecoration(
+                                                color: AppColors.dark_grey,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                      10,
+                                                    ), // <- this makes it ROUND 🌀
                                               ),
-                                        ),
-                                      );
-                                    },
-                                    child: Container(
-                                      height: 125,
-                                      width: 140,
-                                      decoration: BoxDecoration(
-                                        color: AppColors.dark_grey,
-                                        borderRadius: BorderRadius.circular(
-                                          10,
-                                        ), // <- this makes it ROUND 🌀
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(3.0),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.network(
-                                              product.imageUrl,
-                                              width: 130,
-                                              height: 100,
-                                              fit: BoxFit.cover,
-                                            ),
-                                            SizedBox(height: 10),
-                                            Text(
-                                              product.name,
-                                              style: TextStyle(
-                                                fontFamily: 'Montserrat',
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.w600,
-                                                color: AppColors.black,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                  3.0,
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Image.network(
+                                                      product.imageUrl,
+                                                      width: 130,
+                                                      height: 100,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                    SizedBox(height: 10),
+                                                    Text(
+                                                      product.name,
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.w900,
+                                                        color: AppColors.black,
+                                                      ),
+                                                    ),
+
+                                                    Text(
+                                                      '₦${product.price}',
+
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: AppColors.black,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          );
+                                        },
+                                        itemCount: oneProductPerCategory.length,
+                                        scrollDirection: Axis.horizontal,
+                                        separatorBuilder: (
+                                          BuildContext context,
+                                          int index,
+                                        ) {
+                                          return SizedBox(width: 15);
+                                        },
+                                      )
+                                      : Center(
+                                        child: CircularProgressIndicator(),
                                       ),
-                                    ),
-                                  );
-                                },
-                                itemCount: oneProductPerCategory.length,
-                                scrollDirection: Axis.horizontal,
-                                separatorBuilder: (
-                                  BuildContext context,
-                                  int index,
-                                ) {
-                                  return SizedBox(width: 15);
-                                },
-                              ),
                             ),
                             SizedBox(height: 10),
                             CarouselSlider(
@@ -345,68 +385,92 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: 150,
-                              child: ListView.separated(
-                                itemBuilder: (context, index) {
-                                  final product = oneProductPerCategory[index];
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder:
-                                              (context) => DetailsScreen(
-                                                product: product,
+                              height: 170,
+                              child:
+                                  oneProductPerCategory.isNotEmpty
+                                      ? ListView.separated(
+                                        itemBuilder: (context, index) {
+                                          final product =
+                                              oneProductPerCategory[index];
+                                          return InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) =>
+                                                          DetailsScreen(
+                                                            product: product,
+                                                          ),
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              height: 125,
+                                              width: 140,
+                                              decoration: BoxDecoration(
+                                                color: AppColors.dark_grey,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                      10,
+                                                    ), // <- this makes it ROUND 🌀
                                               ),
-                                        ),
-                                      );
-                                    },
-                                    child: Container(
-                                      height: 125,
-                                      width: 140,
-                                      decoration: BoxDecoration(
-                                        color: AppColors.dark_grey,
-                                        borderRadius: BorderRadius.circular(
-                                          10,
-                                        ), // <- this makes it ROUND 🌀
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(3.0),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.network(
-                                              product.imageUrl,
-                                              width: 130,
-                                              height: 100,
-                                              fit: BoxFit.cover,
-                                            ),
-                                            SizedBox(height: 10),
-                                            Text(
-                                              product.name,
-                                              style: TextStyle(
-                                                fontFamily: 'Montserrat',
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.w600,
-                                                color: AppColors.black,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                  3.0,
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Image.network(
+                                                      product.imageUrl,
+                                                      width: 130,
+                                                      height: 100,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                    SizedBox(height: 10),
+                                                    Text(
+                                                      product.name,
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.w900,
+                                                        color: AppColors.black,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      '₦${product.price}',
+
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: AppColors.black,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          );
+                                        },
+                                        itemCount: oneProductPerCategory.length,
+                                        scrollDirection: Axis.horizontal,
+                                        separatorBuilder: (
+                                          BuildContext context,
+                                          int index,
+                                        ) {
+                                          return SizedBox(width: 15);
+                                        },
+                                      )
+                                      : Center(
+                                        child: CircularProgressIndicator(),
                                       ),
-                                    ),
-                                  );
-                                },
-                                itemCount: oneProductPerCategory.length,
-                                scrollDirection: Axis.horizontal,
-                                separatorBuilder: (
-                                  BuildContext context,
-                                  int index,
-                                ) {
-                                  return SizedBox(width: 15);
-                                },
-                              ),
                             ),
                           ],
                         )
