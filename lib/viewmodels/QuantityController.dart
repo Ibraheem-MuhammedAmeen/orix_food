@@ -15,7 +15,6 @@ class QuantityController extends ChangeNotifier {
   void add(String itemName, BuildContext context) {
     final cartBox = Hive.box<CartProduct>('cartProducts');
     final products = cartBox.values.toList();
-    double total = 0;
 
     for (var product in products) {
       if (product.label == itemName) {
@@ -35,7 +34,6 @@ class QuantityController extends ChangeNotifier {
   void sub(String itemName, BuildContext context) {
     final cartBox = Hive.box<CartProduct>('cartProducts');
     final products = cartBox.values.toList();
-    double total = 0;
 
     for (var product in products) {
       if (product.label == itemName) {
